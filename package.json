@@ -1,21 +1,22 @@
 {
   "name": "thing-it-device-z-wave",
-  "version": "0.0.1",
-  "description": "[thing-it-node] Device Plugin for z-wave devices.",
-  "authors": "Marc Gille, Raimund Backes, Julian Seibert",
+  "version": "0.0.2",
+  "description": "[thing-it-node] Device Plugin for Z-wave Networks.",
+  "authors": "Raimund Backes, Marc Gille",
   "keywords": [
     "IoT",
     "thing-it",
     "Home Automation",
     "SmartHome",
-    "z-wave"
+    "Z-wave"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/prbackes/thing-it-device-z-wave"
   },
   "dependencies": {
-    "q": "~1.4.1",
-    "openzwave-shared": "~1.1.6"
+    "openzwave-shared": "~1.1.6",
+    "q": "^1.4.1",
+    "thing-it-test": "0.0.15"
   }
 }
