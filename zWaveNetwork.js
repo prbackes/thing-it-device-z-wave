@@ -149,7 +149,12 @@ function ZWaveNetwork() {
             }.bind(this));
 
             this.zWave.on('node ready', function (nodeid, nodeinfo) {
-                this.logDebug('Node ready.');
+                this.logDebug('Node ready');
+                this.logDebug('Manufacturer: ' + nodeinfo.manufacturer);
+                this.logDebug('Product     : ' + nodeinfo.product);
+                this.logDebug('Product Type: ' + nodeinfo.producttype);
+                this.logDebug('Location    : ' + nodeinfo.loc);
+                this.logDebug('Type        : ' + nodeinfo.type);
             }.bind(this));
 
             this.zWave.on('node added', function (nodeid) {

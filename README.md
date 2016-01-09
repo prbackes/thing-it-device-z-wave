@@ -70,7 +70,7 @@ locally as described [here](https://thing-it.com/thing-it/#/documentationPanel/m
  
 ### Z-Wave Setup
 
-Procure a Z-Wave USB Stick e.g. the (Aeonlab Z-Stick)[] and connect it to the USB port of your node computer. Make sure that
+Procure a Z-Wave USB Stick e.g. the (Aeonlab Z-Stick)[http://aeotec.com/z-wave-usb-stick] and connect it to the USB port of your node computer. Make sure that
 you have the latest driver installed and identify the device the stick is connected to.
 
 Examples are:

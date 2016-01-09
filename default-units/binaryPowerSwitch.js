@@ -63,10 +63,10 @@ function BinaryPowerSwitch() {
      *
      */
     BinaryPowerSwitch.prototype.setStateFromZWave = function (comClass, value) {
-        if (comClass == 38) {
-            if (value.index == 1) {
-                this.state.switch = value.value;
-            }
+        this.logDebug("Set State");
+
+        if (comClass == 37) {
+            this.state.switch = value.value;
 
             this.logDebug("State", this.state);
             this.publishStateChange();
@@ -100,11 +100,14 @@ function BinaryPowerSwitch() {
     /**
      *
      */
-    BinaryPowerSwitch.prototype.on = function (state) {
+    BinaryPowerSwitch.prototype.on = function () {
+        this.logDebug("Called on()");
+
         if (this.isSimulated()) {
 
         } else {
-            //this.device.zWave.setValue(this.configuration.nodeId,38,...);
+            this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, true);
+
             this.publishStateChange();
         }
     };
@@ -112,11 +115,14 @@ function BinaryPowerSwitch() {
     /**
      *
      */
-    BinaryPowerSwitch.prototype.off = function (state) {
+    BinaryPowerSwitch.prototype.off = function () {
+        this.logDebug("Called off()");
+
         if (this.isSimulated()) {
 
         } else {
-            //this.device.zWave.setValue(this.configuration.nodeId,38,...);
+            this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, false);
+
             this.publishStateChange();
         }
     };
@@ -124,11 +130,7 @@ function BinaryPowerSwitch() {
     /**
      *
      */
-    BinaryPowerSwitch.prototype.toggle = function (state) {
-        if (this.state.switch) {
-            this.off();
-        } else {
-            this.on();
-        }
+    BinaryPowerSwitch.prototype.toggle = function () {
+        this.device.zWave.setValue(this.configuration.nodeId, 4, 40);
     };
 };
