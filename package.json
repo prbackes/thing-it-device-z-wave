@@ -1,8 +1,8 @@
 {
   "name": "thing-it-device-z-wave",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "[thing-it-node] Device Plugin for Z-wave Networks.",
-  "authors": "Raimund Backes, Marc Gille",
+  "authors": "Raimund Backes, Marc Gille, Neil Palmer, Klaus Berberich, Julian Seibert",
   "keywords": [
     "IoT",
     "thing-it",
