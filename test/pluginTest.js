@@ -41,8 +41,6 @@ describe('[thing-it] Z-Wave', function () {
             testDriver.removeAllListeners();
         });
         it('should produce Device Discovery message', function (done) {
-            testDriver.zWaveNetwork.binaryPowerSwitch1.off();
-
             setTimeout(function () {
                 testDriver.zWaveNetwork.binaryPowerSwitch1.on();
 

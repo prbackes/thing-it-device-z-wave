@@ -5,6 +5,7 @@ module.exports = {
         label: 'Z-Wave Network',
         manufacturer: 'Z-Wave',
         discoverable: true,
+        additionalSoftware: [{name: "Open Z-Wave", description: "Free software library that interfaces with selected Z-Wave PC controllers.", url: "https://github.com/OpenZWave/open-zwave"}],
         actorTypes: [],
         sensorTypes: [],
         services: [],
@@ -149,7 +150,7 @@ function ZWaveNetwork() {
             }.bind(this));
 
             this.zWave.on('node ready', function (nodeid, nodeinfo) {
-                this.logDebug('Node ready');
+                this.logDebug('Node ready  : ' + nodeid);
                 this.logDebug('Manufacturer: ' + nodeinfo.manufacturer);
                 this.logDebug('Product     : ' + nodeinfo.product);
                 this.logDebug('Product Type: ' + nodeinfo.producttype);
@@ -161,14 +162,29 @@ function ZWaveNetwork() {
                 this.logDebug('Node added: ' + nodeid);
             }.bind(this));
 
+            this.zWave.on('node available', function (nodeid, nodeinfo) {
+                if (!this.nodes[nodeid]) {
+                    this.nodes[nodeid] = {};
+                }
+
+                this.nodes[nodeid].available = true;
+
+                this.logDebug('Node available: ' + nodeid);
+                this.logDebug('Manufacturer  : ' + nodeinfo.manufacturer);
+                this.logDebug('Product       : ' + nodeinfo.product);
+                this.logDebug('Product Type  : ' + nodeinfo.producttype);
+                this.logDebug('Location      : ' + nodeinfo.loc);
+                this.logDebug('Type          : ' + nodeinfo.type);
+            }.bind(this));
+
             this.zWave.on('value added', function (nodeid, comclass, value) {
-                if (this.nodes[nodeid]) {
+                if (this.nodes[nodeid] && this.nodes[nodeid].unit) {
                     this.nodes[nodeid].unit.setStateFromZWave(comclass, value);
                 }
             }.bind(this));
 
             this.zWave.on('value changed', function (nodeid, comclass, value) {
-                if (this.nodes[nodeid]) {
+                if (this.nodes[nodeid] && this.nodes[nodeid].unit) {
                     this.nodes[nodeid].unit.setStateFromZWave(comclass, value);
                 }
             }.bind(this));

@@ -106,9 +106,14 @@ function BinaryPowerSwitch() {
         if (this.isSimulated()) {
 
         } else {
-            this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, true);
+            if (this.device.nodes[this.configuration.nodeId].available == true) {
+                this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, true);
 
-            this.publishStateChange();
+                this.publishStateChange();
+            }
+            else {
+                this.logError("Z-Wave Node is not ready.");
+            }
         }
     };
 
@@ -121,9 +126,14 @@ function BinaryPowerSwitch() {
         if (this.isSimulated()) {
 
         } else {
-            this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, false);
+            if (this.device.nodes[this.configuration.nodeId].available == true) {
+                this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, false);
 
-            this.publishStateChange();
+                this.publishStateChange();
+            }
+            else {
+                this.logError("Z-Wave Node is not ready.");
+            }
         }
     };
 
