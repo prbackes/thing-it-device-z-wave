@@ -5,7 +5,12 @@ module.exports = {
         label: 'Z-Wave Network',
         manufacturer: 'Z-Wave',
         discoverable: true,
-        additionalSoftware: [{name: "Open Z-Wave", description: "Free software library that interfaces with selected Z-Wave PC controllers.", url: "https://github.com/OpenZWave/open-zwave"}],
+        additionalSoftware: [{
+            name: "Open Z-Wave",
+            description: "Free software library that interfaces with selected Z-Wave PC controllers.",
+            url: "https://github.com/OpenZWave/open-zwave",
+            version: "v1.3"
+        }],
         actorTypes: [],
         sensorTypes: [],
         services: [],
