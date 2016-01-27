@@ -106,7 +106,7 @@ function BinaryPowerSwitch() {
         if (this.isSimulated()) {
 
         } else {
-            if (this.device.nodes[this.configuration.nodeId].available == true) {
+            if (this.device.nodes[this.configuration.nodeId]) {
                 this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, true);
 
                 this.publishStateChange();
@@ -126,7 +126,7 @@ function BinaryPowerSwitch() {
         if (this.isSimulated()) {
 
         } else {
-            if (this.device.nodes[this.configuration.nodeId].available == true) {
+            if (this.device.nodes[this.configuration.nodeId]) {
                 this.device.zWave.setValue(this.configuration.nodeId, 37, 1, 0, false);
 
                 this.publishStateChange();

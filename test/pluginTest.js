@@ -27,6 +27,7 @@ describe('[thing-it] Z-Wave', function () {
         it('should produce Device Discovery message', function (done) {
             testDriver.addListener({
                 publishDeviceRegistration: function (device) {
+                    console.log("Here we go! >>>>>>>");
                     done();
                 }
             });
