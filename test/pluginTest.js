@@ -11,8 +11,6 @@ describe('[thing-it] Z-Wave', function () {
         testDriver.registerUnitPlugin(__dirname + "/../default-units/binaryPowerSwitch");
     });
     describe('Start Configuration', function () {
-        this.timeout(20000);
-
         it('should complete without error', function () {
             return testDriver.start({
                 configuration: require("../examples/configuration.js"),
@@ -21,7 +19,7 @@ describe('[thing-it] Z-Wave', function () {
         });
     });
     describe('Switch Discovery', function () {
-        this.timeout(5000);
+        this.timeout(40000);
 
         before(function () {
             testDriver.removeAllListeners();
