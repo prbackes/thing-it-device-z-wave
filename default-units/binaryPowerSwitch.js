@@ -53,6 +53,7 @@ function BinaryPowerSwitch() {
         };
 
         if (this.isSimulated()) {
+        } else {
             this.device.nodes[this.configuration.nodeId] = {unit: this};
         }
 
