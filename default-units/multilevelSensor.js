@@ -62,7 +62,9 @@ function MultilevelSensor() {
             ultraviolet: 0
         };
 
-        this.device.nodes[this.configuration.nodeId] = {unit: this};
+        if (this.isSimulated()) {
+            this.device.nodes[this.configuration.nodeId] = {unit: this};
+        }
 
         deferred.resolve();
 
