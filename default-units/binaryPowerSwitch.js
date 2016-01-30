@@ -141,6 +141,10 @@ function BinaryPowerSwitch() {
      *
      */
     BinaryPowerSwitch.prototype.toggle = function () {
-        this.device.zWave.setValue(this.configuration.nodeId, 4, 40);
+        if (this.state.switch) {
+            this.off();
+        } else {
+            this.on();
+        }
     };
 };
