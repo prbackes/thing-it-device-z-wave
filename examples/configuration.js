@@ -6,13 +6,13 @@ module.exports = {
         confirmRegistration: true,
         persistRegistration: false,
         defaultConfiguration: {},
-        options: {usbDevice: "/dev/cu.SLAB_USBtoUART"}
+        options: {}
     }],
     devices: [{
         label: "Z-Wave Network",
         id: "zWaveNetwork",
         plugin: "z-wave/zWaveNetwork",
-        configuration: {usbDevice: "/dev/cu.SLAB_USBtoUART"},
+        configuration: {},
         logLevel: "debug",
         actors: [{
             id: "multilevelSensor1",
