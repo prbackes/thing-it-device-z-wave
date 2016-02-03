@@ -1,18 +1,18 @@
 module.exports = {
     label: "Suite 1302",
     id: "suite1302",
-    autoDiscoveryDeviceTypes: [/*{
+    autoDiscoveryDeviceTypes: [{
         plugin: "z-wave/zWaveNetwork",
         confirmRegistration: true,
         persistRegistration: false,
         defaultConfiguration: {},
-        options: {}
-    }*/],
+        options: {usbDevice: "/dev/cu.SLAB_USBtoUART"}
+    }],
     devices: [{
         label: "Z-Wave Network",
         id: "zWaveNetwork",
         plugin: "z-wave/zWaveNetwork",
-        configuration: {homeId: "666"},
+        configuration: {usbDevice: "/dev/cu.SLAB_USBtoUART"},
         logLevel: "debug",
         actors: [{
             id: "multilevelSensor1",

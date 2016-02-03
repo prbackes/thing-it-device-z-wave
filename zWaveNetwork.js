@@ -153,7 +153,7 @@ function ZWaveNetworkDiscovery() {
                 this.logDebug('Node added: ' + nodeid);
             }.bind(this));
 
-            this.zWave.connect('/dev/cu.SLAB_USBtoUART'); // TODO From Config
+            this.zWave.connect(this.options.usbDevice);
 
             // TODO For now, need to be able to switch for Discovery or inherit from Device
 
@@ -250,7 +250,7 @@ function ZWaveNetwork() {
                 }
             }.bind(this));
 
-            this.zWave.connect('/dev/cu.SLAB_USBtoUART'); // TODO From Config
+            this.zWave.connect(this.configuration.usbDevice);
 
             deferred.resolve();
         }
