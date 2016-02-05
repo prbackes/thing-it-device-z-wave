@@ -19,7 +19,22 @@ Z-Wave networks allow you to do with scenes and alerts.
 
 ### Installation of Open Z-Wave
 
-#### Linux and OSX
+#### Linux
+
+[thing-it] is testing with a Aeon Labs Z-Wave Z-Stick Series 2 USB Dongle. Most Linux distributions such as Raspbian Jessie
+no further drivers are required. [thing-it] expects the USB stick to be found at "/dev/ttyUSB0".
+
+You will need to ensure the OpenZWave library and headers are installed first. You can do this one of two ways:
+
+* Downloading the source tarball from the [OpenZWave repository](https://github.com/OpenZWave/open-zwave/releases) and then compiling it and installing on your system via **make** and **sudo make install**.
+* You could also install OpenZWave via a precompiled package that's suitable for your Linux distribution and architecture. Notice: Be sure to install BOTH the binary (libopenzwave-x.y) AND the development package (libopenzwave-dev).
+
+#### OSX
+
+[thing-it] is testing with a Aeon Labs Z-Wave Z-Stick Series 2 USB Dongle. On Mac OSX this dongle
+requires the installation of a driver which can be found on the support section of Aeon Lab's
+[website](http://aeotec.com/support). [thing-it] is going to try to communicate with the driver via
+"/dev/cu.SLAB_USBtoUART".
 
 You will need to ensure the OpenZWave library and headers are installed first. You can do this one of two ways:
 
