@@ -22,7 +22,7 @@ Z-Wave networks allow you to do with scenes and alerts.
 #### Linux
 
 The [thing-it] team is testing with a Aeon Labs Z-Wave Z-Stick Series 2 USB Dongle. Most Linux distributions such as Raspbian Jessie
-no further drivers are required. [thing-it] expects the USB stick to be found at "/dev/ttyUSB0".
+require no driver installation. [thing-it] expects the USB stick to be found at "/dev/ttyUSB0".
 
 You will need to ensure the OpenZWave library and headers are installed first. You can do this one of two ways:
 
