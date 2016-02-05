@@ -41,6 +41,11 @@ You will need to ensure the OpenZWave library and headers are installed first. Y
 * Downloading the source tarball from the [OpenZWave repository](https://github.com/OpenZWave/open-zwave/releases) and then compiling it and installing on your system via **make** and **sudo make install**.
 * You could also install OpenZWave via a precompiled package that's suitable for your Linux distribution and architecture. Notice: Be sure to install BOTH the binary (libopenzwave-x.y) AND the development package (libopenzwave-dev).
 
+If an error related to pkg-config occurs during the build process, perform the following steps and try again.
+* brew uninstall pkg-config
+* brew install pkg-config
+* brew unlink pkg-config && brew link pkg-config
+
 #### Windows
 
 Since there is no standard installation location for Open Z-Wave on Windows, it will be automatically downloaded, compiled, and installed when you install 
