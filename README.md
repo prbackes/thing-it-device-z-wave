@@ -21,7 +21,7 @@ Z-Wave networks allow you to do with scenes and alerts.
 
 #### Linux
 
-[thing-it] is testing with a Aeon Labs Z-Wave Z-Stick Series 2 USB Dongle. Most Linux distributions such as Raspbian Jessie
+The [thing-it] team is testing with a Aeon Labs Z-Wave Z-Stick Series 2 USB Dongle. Most Linux distributions such as Raspbian Jessie
 no further drivers are required. [thing-it] expects the USB stick to be found at "/dev/ttyUSB0".
 
 You will need to ensure the OpenZWave library and headers are installed first. You can do this one of two ways:
@@ -31,7 +31,7 @@ You will need to ensure the OpenZWave library and headers are installed first. Y
 
 #### OSX
 
-[thing-it] is testing with a Aeon Labs Z-Wave Z-Stick Series 2 USB Dongle. On Mac OSX this dongle
+The [thing-it] team is testing with a Aeon Labs Z-Wave Z-Stick Series 2 USB Dongle. On Mac OSX this dongle
 requires the installation of a driver which can be found on the support section of Aeon Lab's
 [website](http://aeotec.com/support). [thing-it] is going to try to communicate with the driver via
 "/dev/cu.SLAB_USBtoUART".
