@@ -21,6 +21,26 @@ module.exports = {
                 type: {
                     id: "boolen"
                 }
+            }, {
+                id: "power", label: "Power",
+                type: {
+                    id: "decimal"
+                }
+            }, {
+                id: "energy", label: "Energy",
+                type: {
+                    id: "decimal"
+                }
+            }, {
+                id: "voltage", label: "Voltage",
+                type: {
+                    id: "decimal"
+                }
+            }, {
+                id: "current", label: "Current",
+                type: {
+                    id: "decimal"
+                }
             }],
         configuration: [{
             label: "Node ID",
@@ -49,7 +69,8 @@ function BinaryPowerSwitch() {
         var deferred = q.defer();
 
         this.state = {
-            switch: false
+            switch: false,
+            power: 0
         };
 
         if (this.isSimulated()) {
@@ -66,13 +87,28 @@ function BinaryPowerSwitch() {
      *
      */
     BinaryPowerSwitch.prototype.setStateFromZWave = function (comClass, value) {
-        this.logDebug("Set State");
-
         if (comClass == 37) {
             this.state.switch = value.value;
-
             this.logDebug("State", this.state);
             this.publishStateChange();
+        } else if (comClass == 50) {
+            if (value.label == "Power") {
+                this.state.power = parseFloat(value.value);
+                this.logDebug("State", this.state);
+                this.publishStateChange();
+            } else if (value.label == "Energy") {
+                this.state.energy = parseFloat(value.value);
+                this.logDebug("State", this.state);
+                this.publishStateChange();
+            } else if (value.label == "Voltage") {
+                this.state.voltage = parseFloat(value.value);
+                this.logDebug("State", this.state);
+                this.publishStateChange();
+            } else if (value.label == "Current") {
+                this.state.current = parseFloat(value.value);
+                this.logDebug("State", this.state);
+                this.publishStateChange();
+            }
         }
     };
 
