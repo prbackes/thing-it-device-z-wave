@@ -98,14 +98,14 @@ function MultilevelSensor() {
     /**
      *
      */
-    GenericDevice.prototype.handleEventFromZWave = function(event, valueid) {
+    RoutingBinarySensor.prototype.handleEventFromZWave = function(event, valueid) {
         this.logDebug("Event: " + event + " on Value ID " + valueid);
     }
 
     /**
      *
      */
-    GenericDevice.prototype.handleNotificationFromZWave = function(notif, help) {
+    RoutingBinarySensor.prototype.handleNotificationFromZWave = function(notif, help) {
         this.logDebug(help + " (" + notif + ")");
     }
 

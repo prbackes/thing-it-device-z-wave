@@ -141,14 +141,24 @@ function ZWaveNetworkDiscovery() {
                                 nodeId: n
                             }
                         });
-                    }
-                    else if (this.nodes[n].type === 'Routing Multilevel Sensor') {
+                    } else if (this.nodes[n].type === 'Routing Multilevel Sensor') {
                         this.logDebug("Adding Routing Multilevel Sensor", this.nodes[n]);
 
                         zWaveNetwork.actors.push(actor = {
                             id: "multilevelSensor" + n,
                             label: "Multilevel Sensor " + n,
                             type: "multilevelSensor",
+                            configuration: {
+                                nodeId: n
+                            }
+                        });
+                    } else if (this.nodes[n].type === 'Multilevel Scene Switch') {
+                        this.logDebug("Adding Multilevel Scene Switch", this.nodes[n]);
+
+                        zWaveNetwork.actors.push(actor = {
+                            id: "multilevelSceneSwitch" + n,
+                            label: "Multilevel Scene Switch " + n,
+                            type: "multilevelSceneSwitch",
                             configuration: {
                                 nodeId: n
                             }
