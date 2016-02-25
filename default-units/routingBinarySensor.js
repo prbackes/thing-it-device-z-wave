@@ -92,6 +92,20 @@ function RoutingBinarySensor() {
     /**
      *
      */
+    GenericDevice.prototype.handleEventFromZWave = function(event, valueid) {
+        this.logDebug("Event: " + event + " on Value ID " + valueid);
+    }
+
+    /**
+     *
+     */
+    GenericDevice.prototype.handleNotificationFromZWave = function(notif, help) {
+        this.logDebug(help + " (" + notif + ")");
+    }
+
+    /**
+     *
+     */
     RoutingBinarySensor.prototype.stop = function () {
         var deferred = q.defer();
 

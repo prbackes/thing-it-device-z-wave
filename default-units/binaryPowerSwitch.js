@@ -109,8 +109,25 @@ function BinaryPowerSwitch() {
                 this.logDebug("State", this.state);
                 this.publishStateChange();
             }
+            else {
+                this.logDebug("Ignoring state update.", value.label, value.value);
+            }
         }
     };
+
+    /**
+     *
+     */
+    GenericDevice.prototype.handleEventFromZWave = function(event, valueid) {
+        this.logDebug("Event: " + event + " on Value ID " + valueid);
+    }
+
+    /**
+     *
+     */
+    GenericDevice.prototype.handleNotificationFromZWave = function(notif, help) {
+        this.logDebug(help + " (" + notif + ")");
+    }
 
     /**
      *
@@ -134,6 +151,11 @@ function BinaryPowerSwitch() {
      *
      */
     BinaryPowerSwitch.prototype.setState = function (state) {
+        if (state.switch){
+            this.on();
+        } else {
+            this.off();
+        }
     };
 
     /**
