@@ -283,7 +283,7 @@ function ZWaveNetwork() {
 
             this.zWave.on('node event', function (nodeid, event, valueId) {
                 if (this.nodes[nodeid] && this.nodes[nodeid].unit) {
-                    this.nodes[nodeid].unit.handleEventFromZWave(event, valueid);
+                    this.nodes[nodeid].unit.handleEventFromZWave(event, valueId);
                 }
             }.bind(this));
 
