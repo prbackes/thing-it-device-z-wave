@@ -59,11 +59,10 @@ function ZWaveNetworkDiscovery() {
             }.bind(this));
 
             this.zWave.on('driver failed', function () {
-                this.logDebug('Failed to start driver.');
+                this.logDebug('Failedddd to start driver.');
 
                 this.zWave.disconnect();
-
-                throw 'Cannot connect to driver.';
+                this.logDebug("Still here.")
             }.bind(this));
 
             this.zWave.on('node added', function (nodeId) {
@@ -130,8 +129,8 @@ function ZWaveNetworkDiscovery() {
 
                     var actor;
 
-                    if (this.nodes[n].type === 'Binary Power Switch') {
-                        this.logDebug("Adding Binary Power Switch", this.nodes[n]);
+                    if ((this.nodes[n].type === 'Binary Power Switch') || (this.nodes[n].type === 'Binary Scene Switch')) {
+                        this.logDebug("Adding Binary Switch", this.nodes[n]);
 
                         zWaveNetwork.actors.push(actor = {
                             id: "binaryPowerSwitch" + n,
@@ -152,8 +151,8 @@ function ZWaveNetworkDiscovery() {
                                 nodeId: n
                             }
                         });
-                    } else if (this.nodes[n].type === 'Multilevel Scene Switch') {
-                        this.logDebug("Adding Multilevel Scene Switch", this.nodes[n]);
+                    } else if ((this.nodes[n].type === 'Multilevel Scene Switch') || (this.nodes[n].type === 'Multilevel Power Switch')) {
+                        this.logDebug("Adding Multilevel Switch", this.nodes[n]);
 
                         zWaveNetwork.actors.push(actor = {
                             id: "multilevelSceneSwitch" + n,
@@ -234,8 +233,6 @@ function ZWaveNetwork() {
                 this.logDebug('Failed to start driver.');
 
                 this.zWave.disconnect();
-
-                throw 'Cannot connect to driver.';
             }.bind(this));
 
             this.zWave.on('node ready', function (nodeid, nodeinfo) {
