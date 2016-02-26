@@ -27,6 +27,8 @@ module.exports = {
 var os = require('os');
 var q = require('q');
 var _ = require('lodash');
+var connectionRequested = false;
+var connected = false;
 
 /**
  *
@@ -55,14 +57,15 @@ function ZWaveNetworkDiscovery() {
 
             this.zWave.on('driver ready', function (homeid) {
                 this.logDebug('Scanning network with homeid 0x%s...', homeid.toString(16));
+                connected = true;
                 this.currentHomeId = parseInt("0x" + homeid.toString(16));
             }.bind(this));
 
             this.zWave.on('driver failed', function () {
-                this.logDebug('Failedddd to start driver.');
-
+                this.logDebug('Failed to start driver.');
+                connected = false;
+                connectionRequested = false;
                 this.zWave.disconnect();
-                this.logDebug("Still here.")
             }.bind(this));
 
             this.zWave.on('node added', function (nodeId) {
@@ -181,7 +184,10 @@ function ZWaveNetworkDiscovery() {
                 this.advertiseDevice(zWaveNetwork);
             }.bind(this));
 
-            this.zWave.connect(getDriverPath());
+            if (!connected && !connectionRequested) {
+                connectionRequested = true;
+                this.zWave.connect(getDriverPath());
+            }
 
             // TODO For now, need to be able to switch for Discovery or inherit from Device
             this.logLevel = 'debug';
@@ -226,12 +232,14 @@ function ZWaveNetwork() {
             }
 
             this.zWave.on('driver ready', function (homeid) {
+                connected = true;
                 this.logDebug('Scanning network with homeid %s...', homeid.toString(16));
             }.bind(this));
 
             this.zWave.on('driver failed', function () {
                 this.logDebug('Failed to start driver.');
-
+                connected = false;
+                connectionRequested = false;
                 this.zWave.disconnect();
             }.bind(this));
 
@@ -293,7 +301,10 @@ function ZWaveNetwork() {
                 }
             }.bind(this));
 
-            this.zWave.connect(getDriverPath());
+            if (!connected && !connectionRequested) {
+                connectionRequested = true;
+                this.zWave.connect(getDriverPath());
+            }
 
             deferred.resolve();
         }
