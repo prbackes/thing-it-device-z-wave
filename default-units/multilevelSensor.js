@@ -72,7 +72,7 @@ function MultilevelSensor() {
                 };
 
                 this.publishStateChange();
-            }.bind(this));
+            }.bind(this), 20000);
         } else {
             this.device.nodes[this.configuration.nodeId] = {unit: this};
         }
