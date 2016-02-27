@@ -63,6 +63,16 @@ function MultilevelSensor() {
         };
 
         if (this.isSimulated()) {
+            this.simulationInterval = setInterval(function () {
+                this.state = {
+                    temperature: 15 + 10 * Math.random(),
+                    luminecance: 1000 - 500 * Math.random(),
+                    relativeHumidity: 100 - 30 * Math.random(),
+                    ultraviolet: 1000 - 500 * Math.random()
+                };
+
+                this.publishStateChange();
+            }.bind(this));
         } else {
             this.device.nodes[this.configuration.nodeId] = {unit: this};
         }
@@ -98,14 +108,14 @@ function MultilevelSensor() {
     /**
      *
      */
-    MultilevelSensor.prototype.handleEventFromZWave = function(event, valueid) {
+    MultilevelSensor.prototype.handleEventFromZWave = function (event, valueid) {
         this.logDebug("Event: " + event + " on Value ID " + valueid);
     }
 
     /**
      *
      */
-    MultilevelSensor.prototype.handleNotificationFromZWave = function(notif, help) {
+    MultilevelSensor.prototype.handleNotificationFromZWave = function (notif, help) {
         this.logDebug(help + " (" + notif + ")");
     }
 
@@ -114,6 +124,10 @@ function MultilevelSensor() {
      */
     MultilevelSensor.prototype.stop = function () {
         var deferred = q.defer();
+
+        if (this.isSimulated() && this.simulationInterval) {
+            clearInterval(this.simulationInterval);
+        }
 
         deferred.resolve();
 
