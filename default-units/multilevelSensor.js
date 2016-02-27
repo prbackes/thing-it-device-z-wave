@@ -65,10 +65,10 @@ function MultilevelSensor() {
         if (this.isSimulated()) {
             this.simulationInterval = setInterval(function () {
                 this.state = {
-                    temperature: 15 + 10 * Math.random(),
-                    luminecance: 1000 - 500 * Math.random(),
-                    relativeHumidity: 100 - 30 * Math.random(),
-                    ultraviolet: 1000 - 500 * Math.random()
+                    temperature: Math.round(15 + 10 * Math.random()),
+                    luminecance: Math.round(1000 - 500 * Math.random()),
+                    relativeHumidity: Math.round(100 - 30 * Math.random()),
+                    ultraviolet: Math.round(1000 - 500 * Math.random())
                 };
 
                 this.publishStateChange();
