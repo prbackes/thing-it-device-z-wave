@@ -122,7 +122,7 @@ The following Devices have been tested regarding
 | ---------------------- |:-------------:|:-----------------:|:--------:|
 | [Aeotec Z-Stick]()                                                                                                                                                                                                                   | Controller        | Aeon Labs            | |
 | [Aeotec Gen5 Z-wave Plus 6-in-1 Multisensor 6 ZW100-A](http://www.amazon.com/Aeotec-Aeon-Labs-Z-wave-Multisensor/dp/B00WMEVRRW/ref=sr_1_cc_3?s=aps&ie=UTF8&qid=1455407667&sr=1-3-catcorr&keywords=z-wave+light+sensor) | Multisensor       | Aeon Labs            | |
-| [Aeon Labs DSC06106-ZWUS - Z-Wave Smart Energy Switch](http://www.amazon.com/Aeon-Labs-DSC06106-ZWUS-Z-Wave-Energy/dp/B007UZH7B8)                                                                                                   | Switch            |                   | |
+| [DSC06106-ZWUS - Z-Wave Smart Energy Switch](http://www.amazon.com/Aeon-Labs-DSC06106-ZWUS-Z-Wave-Energy/dp/B007UZH7B8)                                                                                                   | Switch            | Aeon Labs            | |
 | [CT-100 Thermostat]()                                                                                                                                                                                                               | Thermostat        | Radio Thermostat  | |
 | [GoControl Z-Wave Dimmable LED Light Bulb] (http://www.amazon.com/GoControl-Z-Wave-Dimmable-Light-LB60Z-1/dp/B00PJH16UC)                                                                                                            | Light Bulb        | GoControl         | |
 
