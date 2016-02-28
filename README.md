@@ -118,10 +118,10 @@ The following Devices have been tested regarding
 * State Change Detection and
 * Service Invocation:
 
-| Device             | Device Class  |Manufacturer       | Details  |
-| ------------------ |:-------------:|:-----------------:|:--------:|
-| CT-100 Thermostat  | Thermostat    | Radio Thermostat  |          |
-| Aotec Z-Stick      | Controller    | Z-Wave Controller |          |
+| Device                 | Device Class  |Manufacturer       | Details  |
+| ---------------------- |:-------------:|:-----------------:|:--------:|
+| [CT-100 Thermostat]()  | Thermostat    | Radio Thermostat  |          |
+| [Aotec Z-Stick]()      | Controller    | Z-Wave Controller |          |
 
 ## Where to go from here ...
 
