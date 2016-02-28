@@ -110,6 +110,19 @@ The following screenshot shows the Node Page of the [sample configuration]("./ex
 
 <p align="center"><a href="./documentation/images/mobile-ui.png"><img src="./documentation/images/mobile-ui.png" width="70%" height="70%"></a></p>
 
+## Tested Devices
+
+The following Devices have been tested regarding
+
+* Autodiscovery,
+* State Change Detection and
+* Service Invocation:
+
+| Device             | Device Class  |Manufacturer       | Details  |
+| ------------------ |:-------------:|:-----------------:|:--------:|
+| CT-100 Thermostat  | Thermostat    | Radio Thermostat  |          |
+| Aotec Z-Stick      | Controller    | Z-Wave Controller |          |
+
 ## Where to go from here ...
 
 After completing the above, you may be interested in

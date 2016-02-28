@@ -8,7 +8,8 @@
     "thing-it",
     "Home Automation",
     "SmartHome",
-    "Z-wave"
+    "Z-Wave",
+    "GPIO"
   ],
   "repository": {
     "type": "git",
