@@ -175,7 +175,8 @@ function ZWaveNetworkDiscovery() {
                             label: "Generic Z-Wave Device " + n,
                             type: "genericDevice",
                             configuration: {
-                                nodeId: n
+                                nodeId: n,
+                                deviceType: this.nodes[n].type
                             }
                         });
                     }
