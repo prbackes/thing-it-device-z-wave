@@ -111,18 +111,21 @@ function HomeSecuritySensor() {
      *
      */
     HomeSecuritySensor.prototype.setStateFromZWave = function (comClass, value) {
+        if (comClass == 48) {
+            this.state.motionDetected = value.value;
+        }
         if (comClass == 49) {
             if (value.label == "Temperature") {
                 if (value.units == "F") {
                     this.state.fahrenheit = parseFloat(value.value);
 
-                    if (this.configuration.unit == "Fahrenheit"){
+                    if (this.configuration.unit == "Fahrenheit") {
                         this.state.temperature = this.state.fahrenheit;
                     }
                 } else if (value.units == "C") {
                     this.state.celsius = parseFloat(value.value);
 
-                    if (this.configuration.unit == "Celsius"){
+                    if (this.configuration.unit == "Celsius") {
                         this.state.temperature = this.state.celsius;
                     }
                 }
