@@ -198,10 +198,10 @@ function HomeSecuritySensor() {
 
         if ((notif == 3) || (notif == 4) || (notif == 6)) {
             try {
-                this.device.zWave.refreshValue(this.configuration.nodeId, 48, 1, 0);
                 this.device.zWave.refreshValue(this.configuration.nodeId, 49, 1, 1);
                 this.device.zWave.refreshValue(this.configuration.nodeId, 49, 1, 3);
                 this.device.zWave.refreshValue(this.configuration.nodeId, 49, 1, 5);
+                this.device.zWave.refreshValue(this.configuration.nodeId, 48, 1, 0);
             } catch (e) {
                 this.logDebug(e);
             }
