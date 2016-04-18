@@ -118,7 +118,7 @@ function HomeSecuritySensor() {
     HomeSecuritySensor.prototype.setStateFromZWave = function (comClass, value) {
         if (comClass == 48) {
             this.state.motionDetected = value.value;
-            this.logDebug("Update", value.value_id, value.label, value.value);
+            this.logInfo("Update", value.value_id, value.label, value.value);
             this.logDebug("State", this.state);
             this.publishStateChange();
         } else if (comClass == 49) {
@@ -144,11 +144,12 @@ function HomeSecuritySensor() {
                 this.logDebug("Ignoring state update.", value.label, value.value);
             }
 
-            this.logDebug("Update", value.value_id, value.label, value.value);
+            this.logInfo("Update", value.value_id, value.label, value.value);
             this.logDebug("State", this.state);
             this.publishStateChange();
         } else if (comClass == 128) {
             this.state.batteryLevel = value.value;
+            this.logInfo("Update", value.value_id, value.label, value.value);
             this.logDebug("State", this.state);
             this.publishStateChange();
         } else if (comClass == 134) {
@@ -163,7 +164,7 @@ function HomeSecuritySensor() {
         } else if (comClass == 132) {
             this.logDebug("Wake Up Info: " + value.label + " " + value.value + " (valueid " + value.value_id + ")");
 
-            if ((value.value_id == "7-132-1-0") && (value.value != 240)) {
+            if ((value.value_id == this.configuration.nodeId + "-132-1-0") && (value.value != 240)) {
                 this.device.zWave.setValue(this.configuration.nodeId, 132, 1, 0, 240);
             }
         } else if (comClass == 32) {
