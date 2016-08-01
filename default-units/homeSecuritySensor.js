@@ -163,10 +163,6 @@ function HomeSecuritySensor() {
             // this.logDebug("Alarm Info: " + value.label + " " + value.value + " (valueid " + value.value_id + ")");
         } else if (comClass == 132) {
             this.logDebug("Wake Up Info: " + value.label + " " + value.value + " (valueid " + value.value_id + ")");
-
-            if ((value.value_id == this.configuration.nodeId + "-132-1-0") && (value.value != 240)) {
-                this.device.zWave.setValue(this.configuration.nodeId, 132, 1, 0, 240);
-            }
         } else if (comClass == 32) {
             this.logDebug("Basic: " + value.label + " " + value.value + " (valueid " + value.value_id + ")");
         }  else {
@@ -215,6 +211,12 @@ function HomeSecuritySensor() {
     HomeSecuritySensor.prototype.scanComplete = function () {
         this.logDebug("Received scan complete.");
         this.device.zWave.enablePoll(this.configuration.nodeId, 49);
+
+        try {
+            this.device.zWave.setValue(this.configuration.nodeId, 132, 1, 0, 240);
+        } catch (e) {
+            this.logError("Error setting update interval to 240s.", e);
+        }
     };
 
     /**

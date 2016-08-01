@@ -79,7 +79,8 @@ function ZWaveNetworkDiscovery() {
                     type: "unknown",
                     name: "unknown",
                     loc: "unknown",
-                    ready: false
+                    ready: false,
+                    classes: {}
                 };
                 this.logDebug('Node added: ' + nodeId);
             }.bind(this));
@@ -93,17 +94,15 @@ function ZWaveNetworkDiscovery() {
                 this.logDebug('Product Type: ' + nodeInfo.producttype);
                 this.logDebug('Location    : ' + nodeInfo.loc);
 
-                this.nodes[nodeId] = {
-                    manufacturer: nodeInfo.manufacturer,
-                    manufacturerid: nodeInfo.manufacturerid,
-                    product: nodeInfo.product,
-                    producttype: nodeInfo.producttype,
-                    productid: nodeInfo.productid,
-                    type: nodeInfo.type,
-                    name: nodeInfo.name,
-                    loc: nodeInfo.loc,
-                    ready: true
-                };
+                this.nodes[nodeId].manufacturer = nodeInfo.manufacturer;
+                this.nodes[nodeId].manufacturerid = nodeInfo.manufacturerid;
+                this.nodes[nodeId].product = nodeInfo.product;
+                this.nodes[nodeId].producttype = nodeInfo.producttype;
+                this.nodes[nodeId].productid = nodeInfo.productid;
+                this.nodes[nodeId].type = nodeInfo.type;
+                this.nodes[nodeId].name = nodeInfo.name;
+                this.nodes[nodeId].loc = nodeInfo.loc;
+                this.nodes[nodeId].ready = true;
             }.bind(this));
 
             this.zWave.on('scan complete', function () {
@@ -142,7 +141,9 @@ function ZWaveNetworkDiscovery() {
                             type: "binaryPowerSwitch",
                             configuration: {
                                 nodeId: n,
-                                deviceType: this.nodes[n].type
+                                deviceType: this.nodes[n].type,
+                                manufacturer: this.nodes[n].manufacturer,
+                                product: this.nodes[n].product
                             }
                         });
                     } else if (this.nodes[n].type === 'Routing Multilevel Sensor') {
@@ -269,6 +270,17 @@ function ZWaveNetwork() {
                 this.logDebug('Product Type: ' + nodeinfo.producttype);
                 this.logDebug('Location    : ' + nodeinfo.loc);
                 this.logDebug('Type        : ' + nodeinfo.type);
+                this.logDebug('Begin Classes for Node ' + nodeid);
+
+                for (comclass in this.nodes[nodeid]['classes']) {
+                    var values = this.nodes[nodeid]['classes'][comclass];
+                    this.logDebug('node' + nodeid + ': class ' + comclass);
+                    for (idx in values)
+                        this.logDebug('node' + nodeid + ':   ' + values[idx]['label'] + '=' + values[idx]['value']
+                            + ' (' + values[idx]['value_id'] + ')');
+                }
+
+                this.logDebug('End Classes for Node ' + nodeid);
             }.bind(this));
 
             this.zWave.on('node added', function (nodeid) {
@@ -281,7 +293,6 @@ function ZWaveNetwork() {
                 }
 
                 this.nodes[nodeid].available = true;
-
                 this.logDebug('Node available: ' + nodeid);
                 this.logDebug('Manufacturer  : ' + nodeinfo.manufacturer);
                 this.logDebug('Product       : ' + nodeinfo.product);
@@ -292,7 +303,13 @@ function ZWaveNetwork() {
 
             this.zWave.on('value added', function (nodeid, comclass, value) {
                 if (this.nodes[nodeid] && this.nodes[nodeid].unit) {
-                    this.nodes[nodeid].unit.setStateFromZWave(comclass, value);
+                    if (!this.nodes[nodeid]['classes']) {
+                        this.nodes[nodeid]['classes'] = {};
+                    }
+
+                    if (!this.nodes[nodeid]['classes'][comclass])
+                        this.nodes[nodeid]['classes'][comclass] = {};
+                    this.nodes[nodeid]['classes'][comclass][value.index] = value;
                 }
             }.bind(this));
 
