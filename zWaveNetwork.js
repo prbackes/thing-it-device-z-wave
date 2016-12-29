@@ -233,14 +233,23 @@ function ZWaveNetwork() {
      */
     ZWaveNetwork.prototype.start = function () {
         var deferred = q.defer();
+        this.logDebug("****************************");
+        this.logDebug("********* HELLOOOO *********");
+        this.logDebug("****************************");
+        this.logDebug("Simulated: " + this.isSimulated());
 
         if (this.isSimulated()) {
+            this.logDebug("Started Z-Wave Network in simulated mode.");
             deferred.resolve();
         } else {
             this.nodes = Array.apply(null, Array(256)).map(function () {
             });
 
+            this.logDebug("Starting up Z-Wave Device in non-simulated mode.");
+            this.logDebug(this.configuration);
+
             if (!this.zWave) {
+                this.logDebug("Loading Z-Wave library.");
                 var ZWave = require('openzwave-shared');
 
                 this.zWave = new ZWave({
@@ -249,6 +258,7 @@ function ZWaveNetwork() {
 //                    PollInterval: 60000,
                     SuppressRefresh: false,
                 });
+                this.logDebug("Z-Wave library loaded.");
             }
 
             this.zWave.on('driver ready', function (homeid) {
@@ -357,9 +367,13 @@ function ZWaveNetwork() {
             }.bind(this));
 
             if (!connected && !connectionRequested) {
+                this.logDebug("Connecting to Z-Wave driver.");
+                this.logDebug(getDriverPath());
                 connectionRequested = true;
                 this.zWave.connect(getDriverPath());
+                this.logDebug("Connect called.");
             } else {
+                this.logDebug("Z-Wave driver already loaded, notufying nodes.");
                 var currentNode;
 
                 for (n in this.nodes) {
@@ -415,7 +429,7 @@ function ZWaveNetwork() {
 
 var driverPaths = {
     "darwin": '/dev/cu.SLAB_USBtoUART',
-    "linux": '/dev/ttyUSB0',
+    "linux": '/dev/ttyACM0',
     "windows": '\\\\.\\COM3'
 }
 
