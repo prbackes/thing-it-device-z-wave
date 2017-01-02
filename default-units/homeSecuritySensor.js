@@ -67,7 +67,7 @@ module.exports = {
                 type: {
                     id: "string"
                 },
-                defaultValue: "celsius"
+                defaultValue: "Celsius"
             },
         ]
     },
@@ -95,12 +95,13 @@ function HomeSecuritySensor() {
             relativeHumidity: 0,
         };
 
-        if (!(this.configuration.unit == "Celsius") && !(this.configuration.unit == "Fahrenheit")) {
-            this.logDebug("No unit set, defaulting to celsius.");
-            this.configuration.unit = "Celsius";
+        if ((this.configuration.unit.toUpperCase) && ("Fahrenheit".toUpperCase() == this.configuration.unit.toUpperCase())) {
+            this.configuration.unit = "Fahrenheit";
         } else {
-            this.logDebug("Unit set to: ", this.configuration.unit);
+            this.configuration.unit = "Celsius";
         }
+
+        this.logDebug("Unit set to: ", this.configuration.unit);
 
         if (this.isSimulated()) {
         } else {
@@ -165,9 +166,9 @@ function HomeSecuritySensor() {
             this.logDebug("Wake Up Info: " + value.label + " " + value.value + " (valueid " + value.value_id + ")");
         } else if (comClass == 32) {
             this.logDebug("Basic: " + value.label + " " + value.value + " (valueid " + value.value_id + ")");
-        }  else {
+        } else {
             this.logDebug("Unhandled comClass " + comClass + " with value label " + value.label + " and value "
-                + value.value  + " (valueid " + value.value_id + ")");
+                + value.value + " (valueid " + value.value_id + ")");
             this.logDebug(value);
         }
     };
