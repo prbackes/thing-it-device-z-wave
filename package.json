@@ -16,8 +16,10 @@
     "url": "https://github.com/prbackes/thing-it-device-z-wave"
   },
   "dependencies": {
-    "openzwave-shared": "~1.1.6",
     "q": "^1.4.1",
     "thing-it-test": "0.0.15"
+  },
+  "optionalDependencies": {
+    "openzwave-shared": "~1.1.6"
   }
 }
