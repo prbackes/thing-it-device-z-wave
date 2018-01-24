@@ -7,9 +7,10 @@ describe('[thing-it] Z-Wave', function () {
         testDriver = require("thing-it-test").createTestDriver({logLevel: "error"});
 
         testDriver.registerDevicePlugin(__dirname + "/../zWaveNetwork");
-        testDriver.registerUnitPlugin(__dirname + "/../default-units/multilevelSensor");
-        testDriver.registerUnitPlugin(__dirname + "/../default-units/binaryPowerSwitch");
-        testDriver.registerUnitPlugin(__dirname + "/../default-units/routingBinarySensor");
+        testDriver.registerUnitPlugin(__dirname + "/../default-units/homeSecuritySensor");
+        //testDriver.registerUnitPlugin(__dirname + "/../default-units/multilevelSensor");
+        //testDriver.registerUnitPlugin(__dirname + "/../default-units/binaryPowerSwitch");
+        //testDriver.registerUnitPlugin(__dirname + "/../default-units/routingBinarySensor");
     });
     describe('Start Configuration', function () {
         it('should complete without error', function () {
@@ -20,7 +21,7 @@ describe('[thing-it] Z-Wave', function () {
         });
     });
     describe('Switch Discovery', function () {
-        this.timeout(80000);
+        this.timeout(800000);
 
         before(function () {
             testDriver.removeAllListeners();
@@ -33,8 +34,8 @@ describe('[thing-it] Z-Wave', function () {
             });
         });
     });
-    describe('Binary Power Switch Methods', function () {
-        this.timeout(60000);
+    describe.skip('Binary Power Switch Methods', function () {
+        this.timeout(600000);
 
         before(function () {
             testDriver.removeAllListeners();

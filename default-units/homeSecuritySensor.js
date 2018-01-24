@@ -180,9 +180,11 @@ function HomeSecuritySensor() {
         if (255 == event) {
             this.logInfo("Event - motion detected");
             this.state.motionDetected = true;
+            this.publishEvent('motionDetected');
         } else if (0 == event) {
             this.logInfo("Event - no more motion detected");
             this.state.motionDetected = false;
+            this.publishEvent('noMoreMotion');
         }
 
         this.publishStateChange();

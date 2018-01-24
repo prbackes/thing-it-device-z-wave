@@ -15,11 +15,21 @@ module.exports = {
         configuration: {},
         logLevel: "debug",
         actors: [{
+            id: "homeSecuritySensor1",
+            label: "Home Security Sensor 1",
+            type: "homeSecuritySensor",
+            configuration: {
+                nodeId: 4,
+                unit: "Celsius"
+            },
+            logLevel: "debug"
+/*
+        }, {
             id: "multilevelSensor1",
             label: "Multilevel Sensor 1",
             type: "multilevelSensor",
             configuration: {
-                nodeId: 2
+                nodeId: 4
             },
             logLevel: "debug"
         }, {
@@ -54,6 +64,7 @@ module.exports = {
                 nodeId: 8
             },
             logLevel: "debug"
+*/
         }],
         sensors: []
     }],

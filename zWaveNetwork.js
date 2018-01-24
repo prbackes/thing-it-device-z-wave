@@ -248,17 +248,21 @@ function ZWaveNetwork() {
             this.logDebug("Starting up Z-Wave Device in non-simulated mode.");
             this.logDebug(this.configuration);
 
-            if (!this.zWave) {
-                this.logDebug("Loading Z-Wave library.");
-                var ZWave = require('openzwave-shared');
+            try {
+                if (!this.zWave) {
+                    this.logDebug("Loading Z-Wave library.");
+                    var ZWave = require('openzwave-shared');
 
-                this.zWave = new ZWave({
-                    Logging: true,
-                    ConsoleOutput: false,
-//                    PollInterval: 60000,
-                    SuppressRefresh: false,
-                });
-                this.logDebug("Z-Wave library loaded.");
+                    this.zWave = new ZWave({
+                        Logging: true,
+                        ConsoleOutput: false,
+    //                    PollInterval: 60000,
+                        SuppressRefresh: false,
+                    });
+                    this.logDebug("Z-Wave library loaded.");
+                }
+            } catch (e) {
+                this.logError(e);
             }
 
             this.zWave.on('driver ready', function (homeid) {
@@ -428,7 +432,7 @@ function ZWaveNetwork() {
 }
 
 var driverPaths = {
-    "darwin": '/dev/cu.SLAB_USBtoUART',
+    "darwin": '/dev/cu.usbmodem14611',
     "linux": '/dev/ttyACM0',
     "windows": '\\\\.\\COM3'
 }
