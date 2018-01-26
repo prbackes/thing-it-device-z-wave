@@ -88,13 +88,6 @@ function HomeSecuritySensor() {
     HomeSecuritySensor.prototype.start = function () {
         var deferred = q.defer();
 
-        this.state = {
-            motionDetected: false,
-            temperature: 0,
-            luminance: 0,
-            relativeHumidity: 0,
-        };
-
         if ((this.configuration.unit.toUpperCase) && ("Fahrenheit".toUpperCase() == this.configuration.unit.toUpperCase())) {
             this.configuration.unit = "Fahrenheit";
         } else {
@@ -104,8 +97,16 @@ function HomeSecuritySensor() {
         this.logDebug("Unit set to: ", this.configuration.unit);
 
         if (this.isSimulated()) {
+            this.state = {
+                motionDetected: false,
+                temperature: 0,
+                luminance: 0,
+                relativeHumidity: 0,
+            };
+
         } else {
             this.device.nodes[this.configuration.nodeId] = {unit: this};
+            this.state = {};
         }
 
         deferred.resolve();
