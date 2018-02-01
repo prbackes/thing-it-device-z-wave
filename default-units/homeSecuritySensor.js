@@ -5,6 +5,13 @@ module.exports = {
         role: "actor",
         family: "homeSecuritySensor",
         deviceTypes: ["z-wave/zWaveNetwork"],
+        events: [{
+            id: "motionDetected",
+            label: "Motion detected"
+        }, {
+            id: "noMoreMotion",
+            label: "No more Motion"
+        }],
         services: [],
         state: [
             {
