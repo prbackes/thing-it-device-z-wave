@@ -2,7 +2,7 @@ module.exports = {
     metadata: {
         plugin: "homeSecuritySensor",
         label: "Home Security Sensor",
-        role: "actor",
+        role: "sensor",
         family: "homeSecuritySensor",
         deviceTypes: ["z-wave/zWaveNetwork"],
         events: [{
