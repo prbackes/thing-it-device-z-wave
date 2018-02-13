@@ -443,6 +443,6 @@ var driverPaths = {
  */
 function getDriverPath() {
     console.log(">>>>>>>>>>>>> Driver for " + os.platform());
-    //return driverPaths[os.platform()];
-    return "/dev/cu.usbmodem1411";
+    return driverPaths[os.platform()];
+    //return "/dev/cu.usbmodem1411";
 }
