@@ -20,6 +20,11 @@ module.exports = {
                     id: "boolean"
                 }
             }, {
+                id: "occupied", label: "Occupied",
+                type: {
+                    id: "boolean"
+                }
+            }, {
                 id: "fahrenheit", label: "Fahrenheit",
                 type: {
                     id: "decimal"
@@ -106,9 +111,10 @@ function HomeSecuritySensor() {
         if (this.isSimulated()) {
             this.state = {
                 motionDetected: false,
+                occupied: false,
                 temperature: 0,
                 luminance: 0,
-                relativeHumidity: 0,
+                relativeHumidity: 0
             };
 
         } else {
@@ -127,6 +133,7 @@ function HomeSecuritySensor() {
     HomeSecuritySensor.prototype.setStateFromZWave = function (comClass, value) {
         if (comClass == 48) {
             this.state.motionDetected = value.value;
+            this.state.occupied = value.value;
             this.logInfo("Update", value.value_id, value.label, value.value);
             this.logDebug("State", this.state);
             this.publishStateChange();
@@ -188,10 +195,12 @@ function HomeSecuritySensor() {
         if (255 == event) {
             this.logInfo("Event - motion detected");
             this.state.motionDetected = true;
+            this.state.occupied = true;
             this.publishEvent('motionDetected');
         } else if (0 == event) {
             this.logInfo("Event - no more motion detected");
             this.state.motionDetected = false;
+            this.state.occupied = false;
             this.publishEvent('noMoreMotion');
         }
 

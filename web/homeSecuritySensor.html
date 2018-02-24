@@ -1,6 +1,14 @@
 <div style="display: table-row; vertical-align: middle;">
     <table style="display: inline-block;">
         <tr>
+            <ti-motion-sensor state="component._state"
+                              options="{showTicksPerMinute: false, showLastMotionTimestamp: false}"></ti-motion-sensor>
+        </tr>
+    </table>
+</div>
+<div style="display: table-row; vertical-align: middle;">
+    <table style="display: inline-block;">
+        <tr>
             <td colspan="3" style="text-align: center;"><span class="lightPrimaryColor" style="font-size: 4em;">{{component._state.temperature | number:1}}</span><span
                     class="smallFont lightPrimaryColor"><span ng-if="component.configuration.unit == 'Fahrenheit'">&deg;F</span><span
                     ng-if="component.configuration.unit != 'Fahrenheit'">&deg;C</span></span></td>
@@ -38,4 +46,4 @@
         </tr>
     </table>
 </div>
-</div>
+
